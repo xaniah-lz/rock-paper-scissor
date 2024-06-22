@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <style>
+        .head{
+            color: rgb(241, 12, 12);
+        }
+        .name{
+            color: rgb(4, 233, 103);
+        }
+        .result {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .choices img {
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.5em;
+        }
+        .win {
+            color: green;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 1000;
+        }
+        .wins {
+            color: red;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 1000;
+        }
+        .winss {
+            color: rgb(242, 144, 46);
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 1000;
+
+        }
+    </style>
+</head>
+<body><h1 class="head">LET'S PLAY!</h1>
+    <h1 class="name">ROCK - PAPER - SCISSORS</h1>
+    <h2>Choose your Move:</h2>
+    <div class="choices">
+        <img src="rock.png" alt="Rock" onclick="play('ROCK')">
+        <img src="paper.png" alt="Paper" onclick="play('PAPER')">
+        <img src="scissors.png" alt="Scissors" onclick="play('SCISSORS')">
+    </div>
+    <div id="result" class="result"></div>
+
+    <script>
+        function play(playerChoice) {
+            const choices = ['ROCK', 'PAPER', 'SCISSORS'];
+            const computerChoice = choices[Math.floor(Math.random() * 3)];
+            let result = '';
+            let resultClass = '';
+
+            if (playerChoice === computerChoice) {
+                result = "IT'S A TIE!";
+                resultClass = 'winss';
+            } else if (
+                (playerChoice === 'ROCK' && computerChoice === 'SCISSORS') ||
+                (playerChoice === 'PAPER' && computerChoice === 'ROCK') ||
+                (playerChoice === 'SCISSORS' && computerChoice === 'PAPER')
+            ) {
+                result = 'YOU WIN';
+                resultClass = 'win';
+            } else {
+                result = 'COMPUTER WINS!';
+                resultClass = 'wins';
+            }
+
+            document.getElementById('result').innerHTML = `
+                <p>Your Move: <strong>${playerChoice}</strong></p>
+                <p>Computer's Move: <strong>${computerChoice}</strong></p>
+                <p class="${resultClass}">${result}</p>`;
+        }
+    </script>
+</body>
+</html>
+
+</html>
